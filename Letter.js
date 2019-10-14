@@ -7,30 +7,37 @@ var guesses = 0;
 // Defining constructor of Letter...
 function Letter(letter) {
     this.letter = letter;
-    this.goodGuess = function (letter) {
-        if(letter){
+    // this.goodGuess = function (letter) {
+    //     if(letter){
 
-        };
-    };
+    //     };
+    // };
     // this.printLetter = function () {
 
     // };
 };
 
 // Creating a printInfo method and appling to all of Letter obejcts...
-Letter.prototype.printInfo = function () {
+Letter.prototype.toString = function () {
     console.log("Letter: " + this.letter)
 };
 
 // Starting the prompt to ask for a guess...
 inquirer.prompt([{
     name: "letter",
-    message: "Whats the letter?"
+    message: "Whats the letter?",
+    validate: function (value) {
+        var pass = value.match(/[a-z]/);
+        if (pass) {
+            return true;
+        }
+        return false;
+    }
 }]).then(function (answers) {
     // initializes the variable newLetter to be a letter object which will take in all of the user's answers to the questions above...
     var newLetter = new Letter(answers.letter);
     // printInfo method is run to show that the newLetter object was successfully created and filled...
-    newLetter.printInfo();
+    newLetter.toString();
 })
 
 // Exporting the Letter constructor which we will use in index.js...
