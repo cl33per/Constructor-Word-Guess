@@ -1,8 +1,10 @@
 var inquirer = require("inquirer");
 // Array of letters in the english alphabet...
 var possibleLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r,','s','t','u,','v','w','x','y','z'];
-var guessesLeft = [3];
-var guesses = 0;
+var guessesLeft;
+var guesses = 3;
+var letterToMatch = [Math.floor(Math.random() * possibleLetters.length)];
+console.log(letterToMatch);
 
 // Defining constructor of Letter...
 function Letter(letter) {
@@ -37,7 +39,14 @@ inquirer.prompt([{
     // initializes the variable newLetter to be a letter object which will take in all of the user's answers to the questions above...
     var newLetter = new Letter(answers.letter);
     // printInfo method is run to show that the newLetter object was successfully created and filled...
-    newLetter.toString();
+
+    if (newLetter === letterToMatch) {
+        newLetter.toString();
+        console.log('hi');
+    }else{
+        console.log('dead');
+    }
+    
 })
 
 // Exporting the Letter constructor which we will use in index.js...
