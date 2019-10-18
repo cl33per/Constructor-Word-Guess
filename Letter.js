@@ -1,53 +1,15 @@
-var inquirer = require("inquirer");
-// Array of letters in the english alphabet...
-var possibleLetters = ['a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r,','s','t','u,','v','w','x','y','z'];
-var guessesLeft;
-var guesses = 3;
-var letterToMatch = [Math.floor(Math.random() * possibleLetters.length)];
-console.log(letterToMatch);
+//Contains a constructor, Letter.This constructor should be able to either display an underlying character or a blank placeholder(such as an underscore), depending on whether or not the user has guessed the letter.That means the constructor should define:
 
-// Defining constructor of Letter...
-function Letter(letter) {
+// A string value to store the underlying character for the letter
+
+// A boolean value that stores whether that letter has been guessed yet
+
+// A function that returns the underlying character if the letter has been guessed, or a placeholder (like an underscore) if the letter has not been guessed
+
+// A function that takes a character as an argument and checks it against the underlying character, updating the stored boolean value to true if it was guessed correctly
+
+function Letter (letter){
     this.letter = letter;
-    // this.goodGuess = function (letter) {
-    //     if(letter){
-
-    //     };
-    // };
-    // this.printLetter = function () {
-
-    // };
 };
 
-// Creating a printInfo method and appling to all of Letter obejcts...
-Letter.prototype.toString = function () {
-    console.log("Letter: " + this.letter)
-};
-
-// Starting the prompt to ask for a guess...
-inquirer.prompt([{
-    name: "letter",
-    message: "Whats the letter?",
-    validate: function (value) {
-        var pass = value.match(/[a-z]/);
-        if (pass) {
-            return true;
-        }
-        return false;
-    }
-}]).then(function (answers) {
-    // initializes the variable newLetter to be a letter object which will take in all of the user's answers to the questions above...
-    var newLetter = new Letter(answers.letter);
-    // printInfo method is run to show that the newLetter object was successfully created and filled...
-
-    if (newLetter === letterToMatch) {
-        newLetter.toString();
-        console.log('hi');
-    }else{
-        console.log('dead');
-    }
-    
-})
-
-// Exporting the Letter constructor which we will use in index.js...
-// module.exports = Letter;
+module.export = Letter;
